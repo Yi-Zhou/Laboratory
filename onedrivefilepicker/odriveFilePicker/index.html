@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<!--
+  <head>
+    <title>test</title>
+    <script type="text/javascript" src="https://js.live.net/v7.0/OneDrive.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+    function launchOneDrivePicker(){
+      console.log("here");
+      var odOptions = { /* ... specify the desired options ... */ 
+        clientId: "8cfc5300-2316-4282-8781-688551f56c1c",
+        action: "share | download | query",
+        success: function(files) {console.log(files); alert("success");},
+        cancel: function() {console.log("cancelled");},
+        error: function(e) {console.log(e);}
+      };
+      console.log("here");
+
+      OneDrive.open(odOptions);
+    }
+    </script>
+    <button onclick="launchOneDrivePicker()">Open from OneDrive</button>
+  </body>
+  -->
+  <body><iframe src="https://1drv.ms/i/s!ABZITywvUiYjgU0"></iframe></body>
+</html>
+
+<!--
+  <body>
+    <iframe src="https://docs.google.com/viewer?srcid=1Jnu1oBf_wiOUkSJ32hCxjgihPyZ4BZt1m3PbHloST_w&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="580px" height="480px"></iframe>
+  </body>
+</html>
+<html>
+  <head>
+    <script type="text/javascript">
+      // Your Client ID can be retrieved from your project in the Google
+      // Developer Console, https://console.developers.google.com
+      var CLIENT_ID = '677268176575-mclkqsbk192lhj1s0vsg65j16ovrj353';
+
+      var SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+
+      /**
+       * Check if current user has authorized this application.
+       */
+      function checkAuth() {
+        gapi.auth.authorize(
+          {
+            'client_id': CLIENT_ID,
+            'scope': SCOPES.join(' '),
+            'immediate': true
+          }, handleAuthResult);
+      }
+
+      /**
+       * Handle response from authorization server.
+       *
+       * @param {Object} authResult Authorization result.
+       */
+      function handleAuthResult(authResult) {
+        var authorizeDiv = document.getElementById('authorize-div');
+        if (authResult && !authResult.error) {
+          // Hide auth UI, then load client library.
+          authorizeDiv.style.display = 'none';
+          loadDriveApi();
+        } else {
+          // Show auth UI, allowing the user to initiate authorization by
+          // clicking authorize button.
+          authorizeDiv.style.display = 'inline';
+        }
+      }
+
+      /**
+       * Initiate auth flow in response to user clicking authorize button.
+       *
+       * @param {Event} event Button click event.
+       */
+      function handleAuthClick(event) {
+        gapi.auth.authorize(
+          {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+          handleAuthResult);
+        return false;
+      }
+
+      /**
+       * Load Drive API client library.
+       */
+      function loadDriveApi() {
+        gapi.client.load('drive', 'v2', listFiles);
+      }
+
+      /**
+       * Print files.
+       */
+      function listFiles() {
+        var request = gapi.client.drive.files.list({
+            'maxResults': 10
+          });
+
+          request.execute(function(resp) {
+            appendPre('Files:');
+            var files = resp.items;
+            if (files && files.length > 0) {
+              for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                appendPre(file.title + ' (' + file.id + ')');
+              }
+            } else {
+              appendPre('No files found.');
+            }
+          });
+      }
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('output');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+    </script>
+  </head>
+  <body>
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Drive API</span>
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
+  </body>
+</html>
+-->

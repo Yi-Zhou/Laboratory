@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page 1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(function() {
+        console.log("hehe");
+        var uri = "https://mit-roles-test.cloudhub.io/roles/v1/authorizations";
+        $.get(uri+"?proxyPrincipal=MULESOFT&active=true&isActive=true&willExpand=true&principal=avsingh&category=REG", 
+          function(data) {
+            console.log(data);
+          }, 
+          function(err) {console.log(err);}
+        );
+      });
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
